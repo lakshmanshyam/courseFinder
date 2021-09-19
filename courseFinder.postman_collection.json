@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "29155a65-615b-4fa1-9609-dd94ce3cd1dd",
+		"name": "courseFinder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "course apis",
+			"item": [
+				{
+					"name": "get All Courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/courses",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get course details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/courses/a92559a5-2444-435f-8dee-284c5c7241f1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"a92559a5-2444-435f-8dee-284c5c7241f1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AI\",\n    \"teacher\": \"shyam\",\n    \"university\": \"fd17338c-cd9d-467e-8384-155207cca98f\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/courses",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a course",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/courses/2dc4ff16-b3cc-453f-93c9-088b5db557c4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"2dc4ff16-b3cc-453f-93c9-088b5db557c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a course",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ece\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/courses/a92559a5-2444-435f-8dee-284c5c7241f1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"a92559a5-2444-435f-8dee-284c5c7241f1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "university apis",
+			"item": [
+				{
+					"name": "delete university",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/universities/6724e8a2-a608-405e-9f40-a2fbf20f206f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"universities",
+								"6724e8a2-a608-405e-9f40-a2fbf20f206f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create university",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ubc\",\n    \"description\": \"abc popular\",\n    \"country\": \"US\",\n    \"minGpa\": 5.2,\n    \"minGre\": 400\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/universities",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"universities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get university details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/universities/6724e8a2-a608-405e-9f40-a2fbf20f206f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"universities",
+								"6724e8a2-a608-405e-9f40-a2fbf20f206f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
