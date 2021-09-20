@@ -51,8 +51,8 @@ export class CoursesService {
       raw: { affectedRows = 0 },
     } = await this.courseRepository.delete({ uuid: courseUuid });
 
-    const result = affectedRows > 0 ? response : undefined;
-    return this.courseToCourseResponseDto(result);
+    const result = affectedRows > 0 ? this.courseToCourseResponseDto(response) : undefined;
+    return result;
   }
 
   async updateCourse(

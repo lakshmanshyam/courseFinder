@@ -5,6 +5,42 @@
 [Nest](https://github.com/nestjs/nest) framework TypeScript repository.
 
 mysql version : 5.7.24
+
+app runs in localhost:3000 you can customise the port in main.ts file 
+## Search API Documentaiton
+
+GET localhost:3000/courses (gives all courses)
+
+GET localhost:3000/courses?gpa=6.7 (gives all courses with gpa >= 6.7)
+
+GET localhost:3000/courses?gre=430 (gives all courses with gre >= 430)
+
+GET localhost:3000/courses?name="ha" (gives all courses containing ha in its name)
+
+GET localhost:3000/courses?country="US" (gives all courses from country)
+
+all the 4 parameters can be used in any combination
+
+## Utility API Documentation
+
+for courses 
+
+POST localhost:3000/courses (create a course ) 
+
+GET localhost:3000/courses/{course_uuid} ( get a single course details )
+
+PATCH localhost:3000/courses/{course_uuid} {update any name, teacher, university of a course}
+
+DELETE localhost:3000/courses/{course_uuid} (delete the course)
+
+for universities
+
+POST localhost:3000/universities (create a university ) 
+
+GET localhost:3000/universities/{university_uuid} ( get a single university details )
+
+DELETE localhost:3000/universities/{university_uuid} (delete the university)
+
 ## Installation Process
 
 ## Database 
