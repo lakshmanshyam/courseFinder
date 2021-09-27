@@ -1,5 +1,5 @@
 export class CourseResponseDto {
-  uuid: string;
+  id: string;
   name: string;
   teacher: string;
   university: string;

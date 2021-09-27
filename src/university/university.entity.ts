@@ -2,8 +2,8 @@ import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('universities_tbl')
 export class University {
-  @PrimaryColumn('uuid')
-  uuid: string;
+  @PrimaryColumn({name:'university_id', type: 'varchar'})
+  university_id: string;
 
   @Column({ name: 'name', type: 'varchar' })
   name: string;

@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `courses_tbl`;
 CREATE TABLE `courses_tbl` (
   `name` varchar(255) NOT NULL,
   `teacher` varchar(255) NOT NULL,
-  `uuid` char(36) NOT NULL,
-  `university_uuid` char(36) DEFAULT NULL,
-  PRIMARY KEY (`uuid`),
-  KEY `FK_d520a2c656359a6b01e4a6fe08f` (`university_uuid`),
-  CONSTRAINT `FK_d520a2c656359a6b01e4a6fe08f` FOREIGN KEY (`university_uuid`) REFERENCES `universities_tbl` (`uuid`) ON UPDATE NO ACTION
+  `course_id` varchar(255) NOT NULL,
+  `university_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`course_id`),
+  KEY `FK_b77dc9c21a6bcb05e1348d13644` (`university_id`),
+  CONSTRAINT `FK_b77dc9c21a6bcb05e1348d13644` FOREIGN KEY (`university_id`) REFERENCES `universities_tbl` (`university_id`) ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -83,8 +83,8 @@ CREATE TABLE `universities_tbl` (
   `country` varchar(255) NOT NULL,
   `min_gpa` decimal(3,2) NOT NULL,
   `min_gre` int(11) NOT NULL,
-  `uuid` char(36) NOT NULL,
-  PRIMARY KEY (`uuid`)
+  `university_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`university_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -107,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-19  7:23:16
+-- Dump completed on 2021-09-27  4:39:11

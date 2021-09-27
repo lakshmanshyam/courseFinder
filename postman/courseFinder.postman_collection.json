@@ -9,24 +9,6 @@
 			"name": "course apis",
 			"item": [
 				{
-					"name": "get All Courses",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/courses",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"courses"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "get course details",
 					"request": {
 						"method": "GET",
@@ -52,7 +34,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"AI\",\n    \"teacher\": \"shyam\",\n    \"university\": \"fd17338c-cd9d-467e-8384-155207cca98f\"\n}",
+							"raw": "{\n    \"name\": \"Hello\",\n    \"teacher\": \"shyam\",\n    \"university\": \"fd17338c-cd9d-467e-8384-155207cca98f\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -176,14 +158,101 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/universities/6724e8a2-a608-405e-9f40-a2fbf20f206f",
+							"raw": "localhost:3000/universities/28574720-8316-4cac-ac75-5b27c9bbe4af",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"universities",
-								"6724e8a2-a608-405e-9f40-a2fbf20f206f"
+								"28574720-8316-4cac-ac75-5b27c9bbe4af"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "search apis",
+			"item": [
+				{
+					"name": "phoneticSearch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/course?name=data science&gpa=4.8&gre=400&country=US&count=2&after=fd17338c-cd9d-467e-8384-155207cca98f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"course"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "data science"
+								},
+								{
+									"key": "gpa",
+									"value": "4.8"
+								},
+								{
+									"key": "gre",
+									"value": "400"
+								},
+								{
+									"key": "country",
+									"value": "US"
+								},
+								{
+									"key": "count",
+									"value": "2"
+								},
+								{
+									"key": "after",
+									"value": "fd17338c-cd9d-467e-8384-155207cca98f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fuzzySearch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/course/es/search?name=data science&gpa=4.8&gre=400&country=US",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"course",
+								"es",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "data science"
+								},
+								{
+									"key": "gpa",
+									"value": "4.8"
+								},
+								{
+									"key": "gre",
+									"value": "400"
+								},
+								{
+									"key": "country",
+									"value": "US"
+								}
 							]
 						}
 					},

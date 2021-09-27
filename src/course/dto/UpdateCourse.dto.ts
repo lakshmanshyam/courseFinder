@@ -1,10 +1,6 @@
-import { IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
+import { IsOptional } from 'class-validator';
 
 export class UpdateCourseDto {
-  @IsNotEmpty()
-  @IsUUID()
-  uuid: string;
-
   @IsOptional()
   name?: string;
 
@@ -12,6 +8,5 @@ export class UpdateCourseDto {
   teacher?: string;
 
   @IsOptional()
-  @IsUUID()
   university?: string;
 }

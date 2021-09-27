@@ -1,4 +1,4 @@
-import { University } from '../entities/university.entity';
+import { University } from './university.entity';
 import { EntityRepository, Repository } from 'typeorm';
 
 @EntityRepository(University)

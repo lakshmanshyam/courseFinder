@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
-import { CoursesModule } from './courses/courses.module';
-import { UniversitiesModule } from './universities/universities.module';
+import { CourseModule } from './course/course.module';
+import { UniversityModule } from './university/university.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
-    CoursesModule,
-    UniversitiesModule,
+    CourseModule,
+    UniversityModule,
+    SearchModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       cache: true,
@@ -25,7 +27,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       cli: {
         migrationsDir: 'src/migrations',
       },
-    }),
+    })
   ],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
-import { CoursesRepository } from '../../courses/courses.repository';
-import { CoursesService } from '../../courses/courses.service';
+import { CourseRepository } from '../../src/course/course.repository';
+import { CourseService } from '../../src/course/course.service';
 
 const mockCourseRepository = () => ({
   save: jest.fn(),
@@ -9,31 +9,31 @@ const mockCourseRepository = () => ({
   findOne: jest.fn()
 });
 describe('Course service', () => {
-  let coursesService: CoursesService;
-  let courseRepository: CoursesRepository;
+  let coursesService: CourseService;
+  let courseRepository: CourseRepository;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
       providers: [
-        CoursesService,
+        CourseService,
         {
-          provide: CoursesRepository,
+          provide: CourseRepository,
           useFactory: mockCourseRepository,
         },
       ],
     }).compile();
 
-    coursesService = module.get(CoursesService);
-    courseRepository = module.get(CoursesRepository);
+    coursesService = module.get(CourseService);
+    courseRepository = module.get(CourseRepository);
   });
 
   it('create course', () => {
-    coursesService.createCourse('test', 'testteacher', undefined);
+    coursesService.createCourse({ name:'test', teacher: 'testteacher', university: undefined});
     expect(courseRepository.save).toHaveBeenCalled();
   });
 
   it('update course', () => {
-    coursesService.updateCourse('uuid');
+    coursesService.updateCourse('uuid', {name:'test', teacher: 'testteacher'});
     expect(courseRepository.insert).toHaveBeenCalled();
   });
 

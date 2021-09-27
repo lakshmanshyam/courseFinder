@@ -2,48 +2,83 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript repository.
+[Nest](https://github.com/nestjs/nest) framework 
 
+Language: TypeScript
 mysql version : 5.7.24
-
-app runs in localhost:3000 you can customise the port in main.ts file 
+elastic search : 7.15
 ## Search API Documentaiton
 
-GET localhost:3000/courses (gives all courses)
+I have implemented two approaches of search apis
+ 
+ 1. phonetic search using mysql SOUNDEX
 
-GET localhost:3000/courses?gpa=6.7 (gives all courses with gpa >= 6.7)
+    Here we are using mysql's SOUNDEX function to match course names with search string. This search algorithm is based on phonetics.
+    the course name and search string are converted to phonetic characters and see if they are matching ( similar sounds match)
 
-GET localhost:3000/courses?gre=430 (gives all courses with gre >= 430)
+    This approach will give us near good results but will be highly consistent
 
-GET localhost:3000/courses?name="ha" (gives all courses containing ha in its name)
+```bash 
+    GET localhost:3000/course?gpa=<gpa score>&gre=<gre score>&country=<country name>&name=<search string>[&size=<10>&after=<course id>]
+```
 
-GET localhost:3000/courses?country="US" (gives all courses from country)
+ 2. fuzzy search using elastic search (work in progress)
 
-all the 4 parameters can be used in any combination
+    Here we use mysql for storing universities and courses. 
+    We update elastic search with the search parameters that we support
 
+    keeping elastic search in sync with mysql is concern which needs to be addressed
+    This is the trade off we can do for getting 2 char distance fuzzy search 
+
+```bash
+    GET localhost:3000/course/search?gpa=<gpa score>&gre=<gre score>&country=<country name>&name=<search string>[&size=<10>&after=<course id>]
+```
 ## Utility API Documentation
 
-for courses 
+1. courses 
 
-POST localhost:3000/courses (create a course ) 
+```bash
+    POST localhost:3000/course (create a course ) 
 
-GET localhost:3000/courses/{course_uuid} ( get a single course details )
+    GET localhost:3000/course/{course_id} ( get a single course details )
 
-PATCH localhost:3000/courses/{course_uuid} {update any name, teacher, university of a course}
+    PATCH localhost:3000/course/{course_id} {update any name, teacher, university of a course}
 
-DELETE localhost:3000/courses/{course_uuid} (delete the course)
+    DELETE localhost:3000/course/{course_id} (delete the course)
+```
 
-for universities
+2. universities
 
-POST localhost:3000/universities (create a university ) 
+```bash
+    POST localhost:3000/university (create a university ) 
 
-GET localhost:3000/universities/{university_uuid} ( get a single university details )
+    GET localhost:3000/university/{university_id} ( get a single university details )
 
-DELETE localhost:3000/universities/{university_uuid} (delete the university)
+    DELETE localhost:3000/university/{university_id} (delete the university)
+```
 
+## configure (TODO: need to add support for application config)
+
+1. app config 
+    app runs on "http://localhost:3000" 
+    you can customise the port in sr/main.ts file
+2. mysql 
+    mysql config can be updated in src/app.module.ts file
+    configure host, port, user, password params for the application to connect to local mysql
 ## Installation Process
 
-## Database 
+1. elasticsearch
+
+Installing standalone version of elasticsearch
+
+```bash
+$ docker pull docker.elastic.co/elasticsearch/elasticsearch:7.15.0
+```
+```bash
+$ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.15.0
+```
+
+2. Database (mysql)
 
 mysql Db dump with sample data is added to the repo (mysqlDump/projectDump.sql) 
 
@@ -56,35 +91,22 @@ $ mysql -u root -p course_finder < mysqlDump.sql
 This will create a new db named course_finder 
 
 It consists of two tables
-1. courses_tbl
-2. universities_tbl
-
-## configure 
-
-Open app.module.ts file in the src directory of this project 
-configure mysql ( host, port, user, password ) for the application to connect to mysql
-
-## Install application using Yarn
+    1. courses_tbl
+    2. universities_tbl
+## Running backend application using Yarn
 
 ```bash
 $ npm install yarn
 ```
-
-```bash
-$ yarn install
-```
-
 ## Running the app
 
 ```bash
-# development
+$ yarn install
+
 $ yarn start
+```
 
-# watch mode
-$ yarn start:dev
-
-
-## Test
+## Test (TODO : yet to add unit testcases )
 
 ```bash
 # unit tests
@@ -93,35 +115,12 @@ $ yarn test
 # test coverage
 $ yarn test:cov
 ```
-
-## Install application using npm
-
-```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# test coverage
-$ npm run test:cov
-```
-
 ## postman scripts
 
 you can also import the postman collection usign the file 
 
-courseFinder.postman_collection.json available in the repo to test the application
+```bash
+postman/courseFinder.postman_collection.json 
+```
+
+available in the repo to test the application
